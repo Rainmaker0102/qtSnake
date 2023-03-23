@@ -36,11 +36,11 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         label = new QLabel(centralwidget);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(310, 140, 131, 16));
+        label->setGeometry(QRect(340, 230, 81, 16));
         GameWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(GameWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 800, 20));
+        menubar->setGeometry(QRect(0, 0, 800, 21));
         GameWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(GameWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));

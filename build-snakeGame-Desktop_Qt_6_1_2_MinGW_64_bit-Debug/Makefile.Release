@@ -246,7 +246,7 @@ release/moc_gamewindow.cpp: ../snakeGame/gamewindow.h \
 		C:/Qt/6.1.2/mingw81_64/include/QtGui/qicon.h \
 		release/moc_predefs.h \
 		C:/Qt/6.1.2/mingw81_64/bin/moc.exe
-	C:\Qt\6.1.2\mingw81_64\bin\moc.exe $(DEFINES) --include "C:/Users/nickm/Desktop/Patterns and Teams/Snake Project/build-snakeGame-Desktop_Qt_6_1_2_MinGW_64_bit-Debug/release/moc_predefs.h" -IC:/Qt/6.1.2/mingw81_64/mkspecs/win32-g++ -I"C:/Users/nickm/Desktop/Patterns and Teams/Snake Project/snakeGame" -IC:/Qt/6.1.2/mingw81_64/include -IC:/Qt/6.1.2/mingw81_64/include/QtWidgets -IC:/Qt/6.1.2/mingw81_64/include/QtGui -IC:/Qt/6.1.2/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\snakeGame\gamewindow.h -o release\moc_gamewindow.cpp
+	C:\Qt\6.1.2\mingw81_64\bin\moc.exe $(DEFINES) --include "C:/Users/nickm/Desktop/Patterns and Teams/Snake Project/qtSnake/build-snakeGame-Desktop_Qt_6_1_2_MinGW_64_bit-Debug/release/moc_predefs.h" -IC:/Qt/6.1.2/mingw81_64/mkspecs/win32-g++ -I"C:/Users/nickm/Desktop/Patterns and Teams/Snake Project/qtSnake/snakeGame" -IC:/Qt/6.1.2/mingw81_64/include -IC:/Qt/6.1.2/mingw81_64/include/QtWidgets -IC:/Qt/6.1.2/mingw81_64/include/QtGui -IC:/Qt/6.1.2/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\snakeGame\gamewindow.h -o release\moc_gamewindow.cpp
 
 release/moc_mainwindow.cpp: ../snakeGame/mainwindow.h \
 		C:/Qt/6.1.2/mingw81_64/include/QtWidgets/QMainWindow \
@@ -380,7 +380,7 @@ release/moc_mainwindow.cpp: ../snakeGame/mainwindow.h \
 		C:/Qt/6.1.2/mingw81_64/include/QtGui/qicon.h \
 		release/moc_predefs.h \
 		C:/Qt/6.1.2/mingw81_64/bin/moc.exe
-	C:\Qt\6.1.2\mingw81_64\bin\moc.exe $(DEFINES) --include "C:/Users/nickm/Desktop/Patterns and Teams/Snake Project/build-snakeGame-Desktop_Qt_6_1_2_MinGW_64_bit-Debug/release/moc_predefs.h" -IC:/Qt/6.1.2/mingw81_64/mkspecs/win32-g++ -I"C:/Users/nickm/Desktop/Patterns and Teams/Snake Project/snakeGame" -IC:/Qt/6.1.2/mingw81_64/include -IC:/Qt/6.1.2/mingw81_64/include/QtWidgets -IC:/Qt/6.1.2/mingw81_64/include/QtGui -IC:/Qt/6.1.2/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\snakeGame\mainwindow.h -o release\moc_mainwindow.cpp
+	C:\Qt\6.1.2\mingw81_64\bin\moc.exe $(DEFINES) --include "C:/Users/nickm/Desktop/Patterns and Teams/Snake Project/qtSnake/build-snakeGame-Desktop_Qt_6_1_2_MinGW_64_bit-Debug/release/moc_predefs.h" -IC:/Qt/6.1.2/mingw81_64/mkspecs/win32-g++ -I"C:/Users/nickm/Desktop/Patterns and Teams/Snake Project/qtSnake/snakeGame" -IC:/Qt/6.1.2/mingw81_64/include -IC:/Qt/6.1.2/mingw81_64/include/QtWidgets -IC:/Qt/6.1.2/mingw81_64/include/QtGui -IC:/Qt/6.1.2/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\snakeGame\mainwindow.h -o release\moc_mainwindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -539,7 +539,27 @@ release/gamewindow.o: ../snakeGame/gamewindow.cpp ../snakeGame/gamewindow.h \
 		C:/Qt/6.1.2/mingw81_64/include/QtGui/QTransform \
 		C:/Qt/6.1.2/mingw81_64/include/QtWidgets/qtabwidget.h \
 		C:/Qt/6.1.2/mingw81_64/include/QtGui/qicon.h \
-		ui_gamewindow.h
+		ui_gamewindow.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtCore/QVariant \
+		C:/Qt/6.1.2/mingw81_64/include/QtWidgets/QApplication \
+		C:/Qt/6.1.2/mingw81_64/include/QtWidgets/qapplication.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtCore/qcoreapplication.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtCore/qeventloop.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtGui/qguiapplication.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtGui/qinputmethod.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtCore/qlocale.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtWidgets/QLabel \
+		C:/Qt/6.1.2/mingw81_64/include/QtWidgets/qlabel.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtWidgets/qframe.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtGui/qpicture.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtWidgets/QMenuBar \
+		C:/Qt/6.1.2/mingw81_64/include/QtWidgets/qmenubar.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtWidgets/qmenu.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtGui/qaction.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtWidgets/QStatusBar \
+		C:/Qt/6.1.2/mingw81_64/include/QtWidgets/qstatusbar.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\gamewindow.o ..\snakeGame\gamewindow.cpp
 
 release/main.o: ../snakeGame/main.cpp ../snakeGame/mainwindow.h \
@@ -812,6 +832,31 @@ release/mainwindow.o: ../snakeGame/mainwindow.cpp ../snakeGame/mainwindow.h \
 		C:/Qt/6.1.2/mingw81_64/include/QtWidgets/qtabwidget.h \
 		C:/Qt/6.1.2/mingw81_64/include/QtGui/qicon.h \
 		ui_mainwindow.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtCore/QVariant \
+		C:/Qt/6.1.2/mingw81_64/include/QtWidgets/QApplication \
+		C:/Qt/6.1.2/mingw81_64/include/QtWidgets/qapplication.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtCore/qcoreapplication.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtCore/qeventloop.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtGui/qguiapplication.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtGui/qinputmethod.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtCore/qlocale.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtWidgets/QLabel \
+		C:/Qt/6.1.2/mingw81_64/include/QtWidgets/qlabel.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtWidgets/qframe.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtGui/qpicture.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtWidgets/QMenuBar \
+		C:/Qt/6.1.2/mingw81_64/include/QtWidgets/qmenubar.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtWidgets/qmenu.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtGui/qaction.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtWidgets/QPushButton \
+		C:/Qt/6.1.2/mingw81_64/include/QtWidgets/qpushbutton.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtWidgets/QRadioButton \
+		C:/Qt/6.1.2/mingw81_64/include/QtWidgets/qradiobutton.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtWidgets/QStatusBar \
+		C:/Qt/6.1.2/mingw81_64/include/QtWidgets/qstatusbar.h \
+		C:/Qt/6.1.2/mingw81_64/include/QtWidgets/QWidget \
 		../snakeGame/gamewindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mainwindow.o ..\snakeGame\mainwindow.cpp
 

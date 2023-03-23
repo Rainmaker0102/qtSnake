@@ -18,6 +18,16 @@ public:
 private slots:
     void on_pushButton_clicked();
 
+    void on_easyRadioButton_clicked();
+
+    void on_normalRadioButton_clicked();
+
+    void on_hardRadioButton_clicked();
+
+    void on_singleplayerRadioButton_clicked();
+
+    void on_multiplayerRadioButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
