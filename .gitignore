@@ -1,3 +1,6 @@
+# Local Game Files
+config.ini
+
 # C++ objects and libs
 *.slo
 *.lo
