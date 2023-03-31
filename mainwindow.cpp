@@ -32,7 +32,7 @@ void MainWindow::on_pushButton_clicked()
 {
     cout << "Difficulty set to " << gameDifficulty << endl;
     ofstream ofs;
-    ofs.open("../snakeGame/config.ini");
+    ofs.open("./config.ini");
     if(ofs.fail())
     {
         throw("Failed to write to config");
