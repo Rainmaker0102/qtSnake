@@ -19,7 +19,7 @@ GameWindow::GameWindow(QWidget *parent) :
     ui->setupUi(this);
 
     ifstream ifs;
-    ifs.open("../snakeGame/config.ini");
+    ifs.open("./config.ini");
     ifs >> difficulty;
     ifs >> gamemode;
     ifs.close();
@@ -52,9 +52,12 @@ GameWindow::GameWindow(QWidget *parent) :
     snakeHead->setFlag(QGraphicsItem::ItemIsMovable);
     body.push_back(snakeHead);
     border = scene->addRect(40, -40, 780, 560, whiteoutline);
-    this->ui->label->setVisible(false);
-    this->ui->label_2->setVisible(false);
-    this->ui->label_3->setVisible(false);
+    ui->label->setVisible(false);
+    ui->label_2->setVisible(false);
+    ui->label_3->setVisible(false);
+//    ui->label->setHidden(true);
+//    ui->label_2->setHidden(true);
+//    ui->label_3->setHidden(true);
 
 
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
@@ -67,7 +70,7 @@ GameWindow::GameWindow(QWidget *parent) :
     ui->pushButton->setHidden(true);
 
     //msec
-    //timer->start(100);
+//    timer->start(100);
     if(difficulty == 0)
     {
         timer->start(150);
@@ -115,7 +118,7 @@ GameWindow::GameWindow(QWidget *parent) :
         increaseSnake(2);
         increaseSnake(2);
     }
-    ui->setupUi(this);
+//    ui->setupUi(this);
 }
 
 GameWindow::~GameWindow()
@@ -659,7 +662,7 @@ void GameWindow::checkApple()
 
 void GameWindow::checkCollision()
 {
-    for(int i = 0; i < body.size(); i++)
+    for(int i = 0; i < (int) body.size(); i++)
     {
         if(i != 0)
         {
