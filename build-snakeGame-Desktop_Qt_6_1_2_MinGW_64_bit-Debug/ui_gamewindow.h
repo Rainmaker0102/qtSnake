@@ -32,6 +32,8 @@ public:
         if (GameWindow->objectName().isEmpty())
             GameWindow->setObjectName(QString::fromUtf8("GameWindow"));
         GameWindow->resize(800, 600);
+        GameWindow->setStyleSheet(QString::fromUtf8("background-color: rgb(52, 52, 52)\n"
+""));
         centralwidget = new QWidget(GameWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         label = new QLabel(centralwidget);
