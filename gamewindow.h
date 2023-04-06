@@ -74,6 +74,9 @@ private:
     QGraphicsRectItem *border;
     QGraphicsRectItem *apple;
 
+
+private:
+    Ui::GameWindow *ui;
 };
 
 #endif // GAMEWINDOW_H

@@ -115,9 +115,7 @@ GameWindow::GameWindow(QWidget *parent) :
         increaseSnake(2);
         increaseSnake(2);
     }
-
-
-
+    ui->setupUi(this);
 }
 
 GameWindow::~GameWindow()
@@ -745,3 +743,4 @@ void GameWindow::endGame()
     this->ui->singlePlayerScoreLabel->setVisible(false);
     this->ui->label->setVisible(true);
 }
+

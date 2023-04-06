@@ -11,7 +11,6 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
 }
 
 MainWindow::~MainWindow()
@@ -33,7 +32,7 @@ void MainWindow::on_pushButton_clicked()
 {
     cout << "Difficulty set to " << gameDifficulty << endl;
     ofstream ofs;
-    ofs.open("../snakeGame/config.ini");
+    ofs.open("./config.ini");
     if(ofs.fail())
     {
         throw("Failed to write to config");
@@ -94,6 +93,3 @@ void MainWindow::on_multiplayerRadioButton_clicked()
     this->ui->multiplayerRadioButton->setChecked(true);
     gameMode = MULTIPLAYER;
 }
-
-
-
