@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QPainter>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -27,7 +28,6 @@ private slots:
     void on_singleplayerRadioButton_clicked();
 
     void on_multiplayerRadioButton_clicked();
-
 private:
     Ui::MainWindow *ui;
 };
