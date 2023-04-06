@@ -32,6 +32,10 @@ public:
     QRadioButton *hardRadioButton;
     QLabel *label_2;
     QLabel *label_3;
+	QLabel *controls;
+	QLabel *player1;
+	QLabel *player2;
+	
     QRadioButton *singleplayerRadioButton;
     QRadioButton *multiplayerRadioButton;
     QMenuBar *menubar;
@@ -90,6 +94,28 @@ public:
         label_3->setGeometry(QRect(233, 120, 121, 31));
         label_3->setFont(font1);
         label_3->setStyleSheet(QString::fromUtf8("color: white;"));
+		QFont font2;
+        font2.setPointSize(9);
+        font2.setBold(true);
+		controls = new QLabel(centralwidget);
+        controls->setObjectName(QString::fromUtf8("controls"));
+        controls->setGeometry(QRect(200, 480, 49, 16));
+        controls->setFont(font2);
+        controls->setStyleSheet(QString::fromUtf8("color: white;"));
+		QFont font3;
+        font2.setPointSize(9);
+		player1 = new QLabel(centralwidget);
+        player1->setObjectName(QString::fromUtf8("player1"));
+        player1->setGeometry(QRect(92, 510, 91, 20));
+        player1->setFont(font3);
+        player1->setStyleSheet(QString::fromUtf8("color: white;"));
+		player2 = new QLabel(centralwidget);
+        player2->setObjectName(QString::fromUtf8("player2"));
+        player2->setGeometry(QRect(260, 510, 91, 20));
+        player2->setFont(font3);
+        player2->setStyleSheet(QString::fromUtf8("color: white;"));
+		
+		
         singleplayerRadioButton = new QRadioButton(centralwidget);
         singleplayerRadioButton->setObjectName(QString::fromUtf8("singleplayerRadioButton"));
         singleplayerRadioButton->setGeometry(QRect(248, 160, 91, 22));
@@ -125,6 +151,9 @@ public:
         hardRadioButton->setText(QCoreApplication::translate("MainWindow", "Python (Hardest)", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "Difficulty", nullptr));
         label_3->setText(QCoreApplication::translate("MainWindow", "Game Mode", nullptr));
+		controls->setText(QCoreApplication::translate("MainWindow", "Controls", nullptr));
+		player1->setText(QCoreApplication::translate("MainWindow", "Player 1: (WASD)", nullptr));
+		player2->setText(QCoreApplication::translate("MainWindow", "Player 2: (IJKL)", nullptr));
         singleplayerRadioButton->setText(QCoreApplication::translate("MainWindow", "Single Player", nullptr));
         multiplayerRadioButton->setText(QCoreApplication::translate("MainWindow", "Multiplayer", nullptr));
     } // retranslateUi

@@ -1,11 +1,13 @@
 #include "gamewindow.h"
 #include "ui_gamewindow.h"
-#include "gameover.h"
 #include <QDebug>
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
 #include <fstream>
+#include <QLabel>
+#include <QFont>
+#include <string>
 
 using namespace std;
 
@@ -16,7 +18,15 @@ GameWindow::GameWindow(QWidget *parent) :
     update();
     ui->setupUi(this);
 
+    ifstream ifs;
+    ifs.open("../snakeGame/config.ini");
+    ifs >> difficulty;
+    ifs >> gamemode;
+    ifs.close();
+
+    //init values
     playerOneScore = 0;
+    playerTwoScore = 0;
     time = 0;
     x = 400;
     y = 20;
@@ -25,12 +35,16 @@ GameWindow::GameWindow(QWidget *parent) :
     ui->graphicsView->setScene(scene);
 
     QBrush blueBrush(Qt::blue);
+    QBrush greenBrush(Qt::green);
     QPen outlinePen(Qt::black);
     QPen whiteoutline(Qt::white);
     outlinePen.setWidth(2);
 
-
+    //Load player snake and play area border
     snakeHead = scene->addRect(x, y, 20, 20, outlinePen, blueBrush);
+    snakeHead->setPos(-360, -60);
+    x = -360;
+    y = -60;
     bodyX.push_back(x);
     bodyY.push_back(y);
     previousX.push_back(x);
@@ -38,6 +52,7 @@ GameWindow::GameWindow(QWidget *parent) :
     snakeHead->setFlag(QGraphicsItem::ItemIsMovable);
     body.push_back(snakeHead);
     border = scene->addRect(40, -40, 780, 560, whiteoutline);
+
 
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
     spawnApple();
@@ -50,7 +65,54 @@ GameWindow::GameWindow(QWidget *parent) :
 
     //msec
     //timer->start(100);
-    timer->start(50);
+    if(difficulty == 0)
+    {
+        timer->start(150);
+    }
+    else if(difficulty == 1)
+    {
+        timer->start(100);
+    }
+    else if(difficulty == 2)
+    {
+        timer->start(50);
+    }
+    else {
+        timer->start(150);
+    }
+    if(gamemode == 1)
+    {
+        ui->singlePlayerScoreLabel->setHidden(true);
+        ui->lcdNumber->setHidden(true);
+        p2x = 400;
+        p2y = 20;
+        p2speed = 20;
+        p2snakeHead = scene->addRect(p2x, p2y, 20, 20, outlinePen, greenBrush);
+        //p2snakeHead->setPos(-360, -60);
+        p2snakeHead->setPos(400, -60);
+        p2x = 400;
+        p2y = -60;
+        p2bodyX.push_back(p2x);
+        p2bodyY.push_back(p2y);
+        p2previousX.push_back(p2x);
+        p2previousY.push_back(p2y);
+        p2snakeHead->setFlag(QGraphicsItem::ItemIsMovable);
+        p2body.push_back(p2snakeHead);
+
+        increaseSnake(1);
+        increaseSnake(1);
+        increaseSnake(1);
+        increaseSnake(1);
+        increaseSnake(1);
+        increaseSnake(1);
+        increaseSnake(2);
+        increaseSnake(2);
+        increaseSnake(2);
+        increaseSnake(2);
+        increaseSnake(2);
+        increaseSnake(2);
+    }
+
 
 
 }
@@ -94,6 +156,35 @@ void GameWindow::keyPressEvent(QKeyEvent *event)
     {
         close();
     }
+
+    if(event->key() == Qt::Key_I)
+    {
+        if(player2 != DOWN)
+        {
+            player2 = UP;
+        }
+    }
+    else if(event->key() == Qt::Key_K)
+    {
+        if(player2 != UP)
+        {
+            player2 = DOWN;
+        }
+    }
+    else if(event->key() == Qt::Key_J)
+    {
+        if(player2 != RIGHT)
+        {
+            player2 = LEFT;
+        }
+    }
+    else if(event->key() == Qt::Key_L)
+    {
+        if(player2 != LEFT)
+        {
+            player2 = RIGHT;
+        }
+    }
 }
 
 void GameWindow::MyTimerSlot()
@@ -129,10 +220,7 @@ void GameWindow::MyTimerSlot()
         }
         else
         {
-            GameOver *wdg = new GameOver;
-            wdg->show();
-            timer->stop();
-            close();
+            endGame();
         }
     }
     else if(player == RIGHT)
@@ -163,10 +251,7 @@ void GameWindow::MyTimerSlot()
         }
         else
         {
-            GameOver *wdg = new GameOver;
-            wdg->show();
-            timer->stop();
-            close();
+            endGame();
         }
     }
     else if(player == UP)
@@ -197,10 +282,7 @@ void GameWindow::MyTimerSlot()
         }
         else
         {
-            GameOver *wdg = new GameOver;
-            wdg->show();
-            timer->stop();
-            close();
+            endGame();
         }
     }
     else if(player == DOWN)
@@ -232,13 +314,139 @@ void GameWindow::MyTimerSlot()
         //snakeHead->setPos(x, y);
         else
         {
-            GameOver *wdg = new GameOver;
-            wdg->show();
-            timer->stop();
-            close();
+            endGame();
         }
 
     }
+
+    if(player2 == LEFT)
+    {
+        for (int i = 0; i < (int)(p2bodyX.size()); i++)
+        {
+            p2previousX.at(i) = p2bodyX.at(i);
+            p2previousY.at(i) = p2bodyY.at(i);
+        }
+        p2x -= p2speed;
+        if(p2x > -380)
+        {
+            for(int i = 0; i < p2body.size(); i++)
+            {
+                if(i == 0)
+                {
+                    p2snakeHead->setPos(p2x, p2y);
+                    p2bodyX.at(i) = p2x;
+                    p2bodyY.at(i) = p2y;
+                }
+                else
+                {
+                    p2body.at(i)->setPos(p2previousX.at(i-1), p2previousY.at(i-1));
+                    p2bodyX.at(i) = p2previousX.at(i-1);
+                    p2bodyY.at(i) = p2previousY.at(i-1);
+
+                }
+            }
+        }
+        else
+        {
+            endGame();
+        }
+    }
+    else if(player2 == RIGHT)
+    {
+        for (int i = 0; i < (int)(p2bodyX.size()); i++)
+        {
+            p2previousX.at(i) = p2bodyX.at(i);
+            p2previousY.at(i) = p2bodyY.at(i);
+        }
+        p2x += p2speed;
+        if(p2x < 420)
+        {
+            for(int i = 0; i < p2body.size(); i++)
+            {
+                if(i == 0)
+                {
+                    p2snakeHead->setPos(p2x, p2y);
+                    p2bodyX.at(i) = p2x;
+                    p2bodyY.at(i) = p2y;
+                }
+                else
+                {
+                    p2body.at(i)->setPos(p2previousX.at(i-1), p2previousY.at(i-1));
+                    p2bodyX.at(i) = p2previousX.at(i-1);
+                    p2bodyY.at(i) = p2previousY.at(i-1);
+                }
+            }
+        }
+        else
+        {
+            endGame();
+        }
+    }
+    else if(player2 == UP)
+    {
+        for (int i = 0; i < (int)(p2bodyX.size()); i++)
+        {
+            p2previousX.at(i) = p2bodyX.at(i);
+            p2previousY.at(i) = p2bodyY.at(i);
+        }
+        p2y -= p2speed;
+        if(p2y > -80)
+        {
+            for(int i = 0; i < p2body.size(); i++)
+            {
+                if(i == 0)
+                {
+                    p2snakeHead->setPos(p2x, p2y);
+                    p2bodyX.at(i) = p2x;
+                    p2bodyY.at(i) = p2y;
+                }
+                else
+                {
+                    p2body.at(i)->setPos(p2previousX.at(i-1), p2previousY.at(i-1));
+                    p2bodyX.at(i) = p2previousX.at(i-1);
+                    p2bodyY.at(i) = p2previousY.at(i-1);
+                }
+            }
+        }
+        else
+        {
+            endGame();
+        }
+    }
+    else if(player2 == DOWN)
+    {
+        for (int i = 0; i < (int)(p2bodyX.size()); i++)
+        {
+            p2previousX.at(i) = p2bodyX.at(i);
+            p2previousY.at(i) = p2bodyY.at(i);
+        }
+        p2y += p2speed;
+        if(p2y < 500)
+        {
+            for(int i = 0; i < p2body.size(); i++)
+            {
+                if(i == 0)
+                {
+                    p2snakeHead->setPos(p2x, p2y);
+                    p2bodyX.at(i) = p2x;
+                    p2bodyY.at(i) = p2y;
+                }
+                else
+                {
+                    p2body.at(i)->setPos(p2previousX.at(i-1), p2previousY.at(i-1));
+                    p2bodyX.at(i) = p2previousX.at(i-1);
+                    p2bodyY.at(i) = p2previousY.at(i-1);
+                }
+            }
+        }
+        //snakeHead->setPos(x, y);
+        else
+        {
+            endGame();
+        }
+
+    }
+
     checkCollision();
     checkApple();
 
@@ -259,21 +467,40 @@ void GameWindow::on_pushButton_clicked()
     moveApple();
 }
 
-void GameWindow::increaseSnake()
+void GameWindow::increaseSnake(int player)
 {
+    QBrush greenBrush(Qt::green);
     QBrush blueBrush(Qt::blue);
     QPen outlinePen(Qt::black);
     outlinePen.setWidth(2);
-    QGraphicsRectItem *bodyPart = new QGraphicsRectItem;
-    bodyPart = scene->addRect(400, 20, 20, 20, outlinePen, blueBrush);
-    bodyPart->setPos(previousX.at(previousX.size()-1), previousY.at(previousY.size()-1));
-    body.push_back(bodyPart);
-    bodyX.push_back(x);
-    bodyY.push_back(y);
-    previousX.push_back(x);
-    previousY.push_back(y);
-    playerOneScore ++;
-    this->ui->lcdNumber->display(playerOneScore);
+    if(player == 1)
+    {
+        QGraphicsRectItem *bodyPart = new QGraphicsRectItem;
+        bodyPart = scene->addRect(400, 20, 20, 20, outlinePen, blueBrush);
+        bodyPart->setPos(previousX.at(previousX.size()-1), previousY.at(previousY.size()-1));
+        body.push_back(bodyPart);
+        bodyX.push_back(x);
+        bodyY.push_back(y);
+        previousX.push_back(x);
+        previousY.push_back(y);
+        if(gamemode == 0)
+        {
+            playerOneScore ++;
+            this->ui->lcdNumber->display(playerOneScore);
+        }
+    }
+    else if(player == 2)
+    {
+        QGraphicsRectItem *bodyPart = new QGraphicsRectItem;
+        bodyPart = scene->addRect(400, 20, 20, 20, outlinePen, greenBrush);
+        bodyPart->setPos(p2previousX.at(p2previousX.size()-1), p2previousY.at(p2previousY.size()-1));
+        p2body.push_back(bodyPart);
+        p2bodyX.push_back(p2x);
+        p2bodyY.push_back(p2y);
+        p2previousX.push_back(p2x);
+        p2previousY.push_back(p2y);
+    }
+
 }
 
 void GameWindow::spawnApple()
@@ -285,11 +512,23 @@ void GameWindow::spawnApple()
     bool available = false;
     while(true)
     {
-        applePosX = rand()%39+1;
-        applePosY = rand()%28+1;
+        applePosX = rand()%38+1;
+        applePosY = rand()%27+1;
         for(int i = 0; i < bodyX.size(); i++)
         {
             if(applePosX != bodyX.at(i) || applePosY != bodyY.at(i))
+            {
+                available = true;
+            }
+            else
+            {
+                available = false;
+                break;
+            }
+        }
+        for(int i = 0; i < p2bodyX.size(); i++)
+        {
+            if(applePosX != p2bodyX.at(i) || applePosY != p2bodyY.at(i))
             {
                 available = true;
             }
@@ -333,6 +572,18 @@ void GameWindow::moveApple()
                 break;
             }
         }
+        for(int i = 0; i < p2bodyX.size(); i++)
+        {
+            if(applePosX*20-360 != p2bodyX.at(i) || applePosY*20-60 != p2bodyY.at(i))
+            {
+                available = true;
+            }
+            else
+            {
+                available = false;
+                break;
+            }
+        }
         if(available == true && applePosX )
         {
             //apple->setPos(applePosX*20, applePosY*20);
@@ -348,7 +599,12 @@ void GameWindow::checkApple()
 {
     if(appleX-360 == x && appleY-60 == y)
     {
-        increaseSnake();
+        increaseSnake(1);
+        moveApple();
+    }
+    else if(appleX-360 == p2x && appleY-60 == p2y)
+    {
+        increaseSnake(2);
         moveApple();
     }
 }
@@ -359,13 +615,52 @@ void GameWindow::checkCollision()
     {
         if(i != 0)
         {
-            qDebug() << x << " " << bodyX.at(i);
+            //qDebug() << x << " " << bodyX.at(i);
             if(x == bodyX.at(i) && y == bodyY.at(i))
             {
-                GameOver *wdg = new GameOver;
-                wdg->show();
-                timer->stop();
-                close();
+                endGame();
+                if(gamemode == 0)
+                {
+
+                    //player 1 score
+
+                }
+                else{
+                    //player 2 wins
+                }
+
+            }
+            if(gamemode == 1)
+            {
+                if(p2x == bodyX.at(i) && p2y == bodyY.at(i))
+                {
+                    endGame();
+                    //player 1 wins
+
+                }
+            }
+        }
+    }
+    if(gamemode == 1)
+    {
+        for(int i = 0; i < p2body.size(); i++)
+        {
+            if(i != 0)
+            {
+                //qDebug() << x << " " << bodyX.at(i);
+                if(p2x == p2bodyX.at(i) && p2y == p2bodyY.at(i))
+                {
+                    endGame();
+                    //player one wins
+
+                }
+
+                if(x == p2bodyX.at(i) && y == p2bodyY.at(i))
+                {
+                    endGame();
+                    //player 2 wins
+
+                }
             }
         }
     }
@@ -373,4 +668,24 @@ void GameWindow::checkCollision()
 //    wdg->show();
 //    timer->stop();
 //    close();
+}
+
+void GameWindow::endGame()
+{
+    timer->stop();
+    for(int q = 0; q < body.size(); q++)
+    {
+        body.at(q)->setVisible(false);
+    }
+    if(gamemode == 1)
+    {
+        for(int q = 0; q < p2body.size(); q++)
+        {
+            p2body.at(q)->setVisible(false);
+        }
+    }
+    apple->setVisible(false);
+    border->setVisible(false);
+    this->ui->lcdNumber->setVisible(false);
+    this->ui->singlePlayerScoreLabel->setVisible(false);
 }

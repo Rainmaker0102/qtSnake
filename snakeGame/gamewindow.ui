@@ -59,7 +59,7 @@
      <string>add snake tail</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="singlePlayerScoreLabel">
     <property name="geometry">
      <rect>
       <x>400</x>
@@ -86,6 +86,28 @@
       <width>91</width>
       <height>41</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>210</y>
+      <width>231</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>29</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: white;</string>
+    </property>
+    <property name="text">
+     <string>Game Over!</string>
     </property>
    </widget>
   </widget>

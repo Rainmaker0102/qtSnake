@@ -28,7 +28,7 @@ public:
     QWidget *centralwidget;
     QGraphicsView *graphicsView;
     QPushButton *pushButton;
-    QLabel *label;
+    QLabel *singlePlayerScoreLabel;
     QLCDNumber *lcdNumber;
     QMenuBar *menubar;
     QStatusBar *statusbar;
@@ -54,13 +54,13 @@ public:
         pushButton = new QPushButton(centralwidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
         pushButton->setGeometry(QRect(400, 400, 80, 24));
-        label = new QLabel(centralwidget);
-        label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(400, 50, 91, 41));
+        singlePlayerScoreLabel = new QLabel(centralwidget);
+        singlePlayerScoreLabel->setObjectName(QString::fromUtf8("label"));
+        singlePlayerScoreLabel->setGeometry(QRect(400, 50, 91, 41));
         QFont font;
         font.setPointSize(22);
         font.setBold(true);
-        label->setFont(font);
+        singlePlayerScoreLabel->setFont(font);
         lcdNumber = new QLCDNumber(centralwidget);
         lcdNumber->setObjectName(QString::fromUtf8("lcdNumber"));
         lcdNumber->setGeometry(QRect(510, 50, 91, 41));
@@ -82,7 +82,7 @@ public:
     {
         GameWindow->setWindowTitle(QCoreApplication::translate("GameWindow", "MainWindow", nullptr));
         pushButton->setText(QCoreApplication::translate("GameWindow", "add snake tail", nullptr));
-        label->setText(QCoreApplication::translate("GameWindow", "Score:", nullptr));
+        singlePlayerScoreLabel->setText(QCoreApplication::translate("GameWindow", "Score:", nullptr));
     } // retranslateUi
 
 };
