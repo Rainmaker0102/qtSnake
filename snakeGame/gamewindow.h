@@ -25,10 +25,8 @@ public:
     int x;
     int y;
     int speed;
-
     int difficulty;
     int gamemode;
-
     int appleX;
     int appleY;
     int playerOneScore;
@@ -70,7 +68,6 @@ private slots:
 
 private:
     Ui::GameWindow *ui;
-
     QGraphicsScene *scene;
     QGraphicsRectItem *snakeHead;
     QGraphicsRectItem *p2snakeHead;

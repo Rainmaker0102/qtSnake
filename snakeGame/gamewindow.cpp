@@ -672,12 +672,14 @@ void GameWindow::checkCollision()
                 endGame();
                 if(gamemode == 0)
                 {
-
+                    this->ui->lcdNumber->setVisible(true);
+                    this->ui->singlePlayerScoreLabel->setVisible(true);
                     //player 1 score
 
                 }
                 else{
                     //player 2 wins
+                    this->ui->label_3->setVisible(true);
                 }
 
             }
@@ -687,6 +689,7 @@ void GameWindow::checkCollision()
                 {
                     endGame();
                     //player 1 wins
+                    this->ui->label_2->setVisible(true);
 
                 }
             }
@@ -703,13 +706,14 @@ void GameWindow::checkCollision()
                 {
                     endGame();
                     //player one wins
-
+                    this->ui->label_2->setVisible(true);
                 }
 
                 if(x == p2bodyX.at(i) && y == p2bodyY.at(i))
                 {
                     endGame();
                     //player 2 wins
+                    this->ui->label_3->setVisible(true);
 
                 }
             }
