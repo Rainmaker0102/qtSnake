@@ -44,6 +44,7 @@ void MainWindow::on_pushButton_clicked()
     GameWindow *wdg = new GameWindow;
     wdg->show();
     hide();
+    close();
 
 }
 
@@ -92,4 +93,3 @@ void MainWindow::on_multiplayerRadioButton_clicked()
     this->ui->multiplayerRadioButton->setChecked(true);
     gameMode = MULTIPLAYER;
 }
-
