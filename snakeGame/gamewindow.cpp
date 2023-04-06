@@ -52,6 +52,9 @@ GameWindow::GameWindow(QWidget *parent) :
     snakeHead->setFlag(QGraphicsItem::ItemIsMovable);
     body.push_back(snakeHead);
     border = scene->addRect(40, -40, 780, 560, whiteoutline);
+    this->ui->label->setVisible(false);
+    this->ui->label_2->setVisible(false);
+    this->ui->label_3->setVisible(false);
 
 
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
@@ -220,7 +223,17 @@ void GameWindow::MyTimerSlot()
         }
         else
         {
+            qDebug() << "Snake left the left side";
             endGame();
+            if(gamemode == 0)
+            {
+                this->ui->lcdNumber->setVisible(true);
+                this->ui->singlePlayerScoreLabel->setVisible(true);
+            }
+            else
+            {
+                this->ui->label_3->setVisible(true);
+            }
         }
     }
     else if(player == RIGHT)
@@ -251,7 +264,17 @@ void GameWindow::MyTimerSlot()
         }
         else
         {
+            qDebug() << "Snake left the right side";
             endGame();
+            if(gamemode == 0)
+            {
+                this->ui->lcdNumber->setVisible(true);
+                this->ui->singlePlayerScoreLabel->setVisible(true);
+            }
+            else
+            {
+                this->ui->label_3->setVisible(true);
+            }
         }
     }
     else if(player == UP)
@@ -282,7 +305,18 @@ void GameWindow::MyTimerSlot()
         }
         else
         {
+            qDebug() << "Snake left the top side";
+
             endGame();
+            if(gamemode == 0)
+            {
+                this->ui->lcdNumber->setVisible(true);
+                this->ui->singlePlayerScoreLabel->setVisible(true);
+            }
+            else
+            {
+                this->ui->label_3->setVisible(true);
+            }
         }
     }
     else if(player == DOWN)
@@ -314,137 +348,153 @@ void GameWindow::MyTimerSlot()
         //snakeHead->setPos(x, y);
         else
         {
+            qDebug() << "Snake left the bottom side";
             endGame();
+            if(gamemode == 0)
+            {
+                this->ui->lcdNumber->setVisible(true);
+                this->ui->singlePlayerScoreLabel->setVisible(true);
+            }
+            else
+            {
+                this->ui->label_3->setVisible(true);
+            }
         }
 
     }
+    if(gamemode == 1)
+    {
+        if(player2 == LEFT)
+        {
+            for (int i = 0; i < (int)(p2bodyX.size()); i++)
+            {
+                p2previousX.at(i) = p2bodyX.at(i);
+                p2previousY.at(i) = p2bodyY.at(i);
+            }
+            p2x -= p2speed;
+            if(p2x > -380)
+            {
+                for(int i = 0; i < p2body.size(); i++)
+                {
+                    if(i == 0)
+                    {
+                        p2snakeHead->setPos(p2x, p2y);
+                        p2bodyX.at(i) = p2x;
+                        p2bodyY.at(i) = p2y;
+                    }
+                    else
+                    {
+                        p2body.at(i)->setPos(p2previousX.at(i-1), p2previousY.at(i-1));
+                        p2bodyX.at(i) = p2previousX.at(i-1);
+                        p2bodyY.at(i) = p2previousY.at(i-1);
 
-    if(player2 == LEFT)
-    {
-        for (int i = 0; i < (int)(p2bodyX.size()); i++)
-        {
-            p2previousX.at(i) = p2bodyX.at(i);
-            p2previousY.at(i) = p2bodyY.at(i);
-        }
-        p2x -= p2speed;
-        if(p2x > -380)
-        {
-            for(int i = 0; i < p2body.size(); i++)
-            {
-                if(i == 0)
-                {
-                    p2snakeHead->setPos(p2x, p2y);
-                    p2bodyX.at(i) = p2x;
-                    p2bodyY.at(i) = p2y;
+                    }
                 }
-                else
+            }
+            else
+            {
+                endGame();
+                this->ui->label_2->setVisible(true);
+            }
+        }
+        else if(player2 == RIGHT)
+        {
+            for (int i = 0; i < (int)(p2bodyX.size()); i++)
+            {
+                p2previousX.at(i) = p2bodyX.at(i);
+                p2previousY.at(i) = p2bodyY.at(i);
+            }
+            p2x += p2speed;
+            if(p2x < 420)
+            {
+                for(int i = 0; i < p2body.size(); i++)
                 {
-                    p2body.at(i)->setPos(p2previousX.at(i-1), p2previousY.at(i-1));
-                    p2bodyX.at(i) = p2previousX.at(i-1);
-                    p2bodyY.at(i) = p2previousY.at(i-1);
+                    if(i == 0)
+                    {
+                        p2snakeHead->setPos(p2x, p2y);
+                        p2bodyX.at(i) = p2x;
+                        p2bodyY.at(i) = p2y;
+                    }
+                    else
+                    {
+                        p2body.at(i)->setPos(p2previousX.at(i-1), p2previousY.at(i-1));
+                        p2bodyX.at(i) = p2previousX.at(i-1);
+                        p2bodyY.at(i) = p2previousY.at(i-1);
+                    }
+                }
+            }
+            else
+            {
+                endGame();
+                this->ui->label_2->setVisible(true);
+            }
+        }
+        else if(player2 == UP)
+        {
+            for (int i = 0; i < (int)(p2bodyX.size()); i++)
+            {
+                p2previousX.at(i) = p2bodyX.at(i);
+                p2previousY.at(i) = p2bodyY.at(i);
+            }
+            p2y -= p2speed;
+            if(p2y > -80)
+            {
+                for(int i = 0; i < p2body.size(); i++)
+                {
+                    if(i == 0)
+                    {
+                        p2snakeHead->setPos(p2x, p2y);
+                        p2bodyX.at(i) = p2x;
+                        p2bodyY.at(i) = p2y;
+                    }
+                    else
+                    {
+                        p2body.at(i)->setPos(p2previousX.at(i-1), p2previousY.at(i-1));
+                        p2bodyX.at(i) = p2previousX.at(i-1);
+                        p2bodyY.at(i) = p2previousY.at(i-1);
+                    }
+                }
+            }
+            else
+            {
+                endGame();
+                this->ui->label_2->setVisible(true);
+            }
+        }
+        else if(player2 == DOWN)
+        {
+            for (int i = 0; i < (int)(p2bodyX.size()); i++)
+            {
+                p2previousX.at(i) = p2bodyX.at(i);
+                p2previousY.at(i) = p2bodyY.at(i);
+            }
+            p2y += p2speed;
+            if(p2y < 500)
+            {
+                for(int i = 0; i < p2body.size(); i++)
+                {
+                    if(i == 0)
+                    {
+                        p2snakeHead->setPos(p2x, p2y);
+                        p2bodyX.at(i) = p2x;
+                        p2bodyY.at(i) = p2y;
+                    }
+                    else
+                    {
+                        p2body.at(i)->setPos(p2previousX.at(i-1), p2previousY.at(i-1));
+                        p2bodyX.at(i) = p2previousX.at(i-1);
+                        p2bodyY.at(i) = p2previousY.at(i-1);
+                    }
+                }
+            }
+            //snakeHead->setPos(x, y);
+            else
+            {
+                endGame();
+                this->ui->label_2->setVisible(true);
+            }
 
-                }
-            }
         }
-        else
-        {
-            endGame();
-        }
-    }
-    else if(player2 == RIGHT)
-    {
-        for (int i = 0; i < (int)(p2bodyX.size()); i++)
-        {
-            p2previousX.at(i) = p2bodyX.at(i);
-            p2previousY.at(i) = p2bodyY.at(i);
-        }
-        p2x += p2speed;
-        if(p2x < 420)
-        {
-            for(int i = 0; i < p2body.size(); i++)
-            {
-                if(i == 0)
-                {
-                    p2snakeHead->setPos(p2x, p2y);
-                    p2bodyX.at(i) = p2x;
-                    p2bodyY.at(i) = p2y;
-                }
-                else
-                {
-                    p2body.at(i)->setPos(p2previousX.at(i-1), p2previousY.at(i-1));
-                    p2bodyX.at(i) = p2previousX.at(i-1);
-                    p2bodyY.at(i) = p2previousY.at(i-1);
-                }
-            }
-        }
-        else
-        {
-            endGame();
-        }
-    }
-    else if(player2 == UP)
-    {
-        for (int i = 0; i < (int)(p2bodyX.size()); i++)
-        {
-            p2previousX.at(i) = p2bodyX.at(i);
-            p2previousY.at(i) = p2bodyY.at(i);
-        }
-        p2y -= p2speed;
-        if(p2y > -80)
-        {
-            for(int i = 0; i < p2body.size(); i++)
-            {
-                if(i == 0)
-                {
-                    p2snakeHead->setPos(p2x, p2y);
-                    p2bodyX.at(i) = p2x;
-                    p2bodyY.at(i) = p2y;
-                }
-                else
-                {
-                    p2body.at(i)->setPos(p2previousX.at(i-1), p2previousY.at(i-1));
-                    p2bodyX.at(i) = p2previousX.at(i-1);
-                    p2bodyY.at(i) = p2previousY.at(i-1);
-                }
-            }
-        }
-        else
-        {
-            endGame();
-        }
-    }
-    else if(player2 == DOWN)
-    {
-        for (int i = 0; i < (int)(p2bodyX.size()); i++)
-        {
-            p2previousX.at(i) = p2bodyX.at(i);
-            p2previousY.at(i) = p2bodyY.at(i);
-        }
-        p2y += p2speed;
-        if(p2y < 500)
-        {
-            for(int i = 0; i < p2body.size(); i++)
-            {
-                if(i == 0)
-                {
-                    p2snakeHead->setPos(p2x, p2y);
-                    p2bodyX.at(i) = p2x;
-                    p2bodyY.at(i) = p2y;
-                }
-                else
-                {
-                    p2body.at(i)->setPos(p2previousX.at(i-1), p2previousY.at(i-1));
-                    p2bodyX.at(i) = p2previousX.at(i-1);
-                    p2bodyY.at(i) = p2previousY.at(i-1);
-                }
-            }
-        }
-        //snakeHead->setPos(x, y);
-        else
-        {
-            endGame();
-        }
-
     }
 
     checkCollision();
@@ -618,6 +668,7 @@ void GameWindow::checkCollision()
             //qDebug() << x << " " << bodyX.at(i);
             if(x == bodyX.at(i) && y == bodyY.at(i))
             {
+                qDebug() << "Collision Detected";
                 endGame();
                 if(gamemode == 0)
                 {
@@ -688,4 +739,5 @@ void GameWindow::endGame()
     border->setVisible(false);
     this->ui->lcdNumber->setVisible(false);
     this->ui->singlePlayerScoreLabel->setVisible(false);
+    this->ui->label->setVisible(true);
 }

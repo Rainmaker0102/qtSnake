@@ -30,6 +30,9 @@ public:
     QPushButton *pushButton;
     QLabel *singlePlayerScoreLabel;
     QLCDNumber *lcdNumber;
+    QLabel *label;
+    QLabel *label_2;
+    QLabel *label_3;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -55,8 +58,8 @@ public:
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
         pushButton->setGeometry(QRect(400, 400, 80, 24));
         singlePlayerScoreLabel = new QLabel(centralwidget);
-        singlePlayerScoreLabel->setObjectName(QString::fromUtf8("label"));
-        singlePlayerScoreLabel->setGeometry(QRect(400, 50, 91, 41));
+        singlePlayerScoreLabel->setObjectName(QString::fromUtf8("singlePlayerScoreLabel"));
+        singlePlayerScoreLabel->setGeometry(QRect(350, 50, 91, 41));
         QFont font;
         font.setPointSize(22);
         font.setBold(true);
@@ -64,6 +67,24 @@ public:
         lcdNumber = new QLCDNumber(centralwidget);
         lcdNumber->setObjectName(QString::fromUtf8("lcdNumber"));
         lcdNumber->setGeometry(QRect(510, 50, 91, 41));
+        label = new QLabel(centralwidget);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setGeometry(QRect(360, 210, 231, 121));
+        QFont font1;
+        font1.setPointSize(29);
+        font1.setBold(true);
+        label->setFont(font1);
+        label->setStyleSheet(QString::fromUtf8("color: white;"));
+        label_2 = new QLabel(centralwidget);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setGeometry(QRect(340, 320, 271, 121));
+        label_2->setFont(font1);
+        label_2->setStyleSheet(QString::fromUtf8("color: white;"));
+        label_3 = new QLabel(centralwidget);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setGeometry(QRect(340, 320, 271, 121));
+        label_3->setFont(font1);
+        label_3->setStyleSheet(QString::fromUtf8("color: white;"));
         GameWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(GameWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -83,6 +104,9 @@ public:
         GameWindow->setWindowTitle(QCoreApplication::translate("GameWindow", "MainWindow", nullptr));
         pushButton->setText(QCoreApplication::translate("GameWindow", "add snake tail", nullptr));
         singlePlayerScoreLabel->setText(QCoreApplication::translate("GameWindow", "Score:", nullptr));
+        label->setText(QCoreApplication::translate("GameWindow", "Game Over!", nullptr));
+        label_2->setText(QCoreApplication::translate("GameWindow", "Player 1 Wins!", nullptr));
+        label_3->setText(QCoreApplication::translate("GameWindow", "Player 2 Wins!", nullptr));
     } // retranslateUi
 
 };
